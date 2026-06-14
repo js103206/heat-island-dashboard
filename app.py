@@ -1759,83 +1759,6 @@ else:
 st.divider()
 
 # ==================================================
-# 다중 예측모델 성능 비교
-# ==================================================
-
-st.subheader("🤖 다중 예측모델 성능 비교")
-st.markdown(
-    '<div class="small-caption">연간 HIRI, 야간기온, 열대야시간 등 여러 예측 대상에 대한 모델 성능 비교 결과입니다.</div>',
-    unsafe_allow_html=True
-)
-
-if not model_performance_all.empty:
-    st.dataframe(
-        model_performance_all.round(4),
-        use_container_width=True
-    )
-
-    if "test_r2" in model_performance_all.columns:
-        performance_best = (
-            model_performance_all
-            .sort_values("test_r2", ascending=False)
-            .groupby("target_label")
-            .head(1)
-            .copy()
-        )
-
-        perf_chart = (
-            alt.Chart(performance_best)
-            .mark_bar(cornerRadiusTopLeft=6, cornerRadiusTopRight=6)
-            .encode(
-                x=alt.X("target_label:N", title="예측 대상", sort="-y"),
-                y=alt.Y("test_r2:Q", title="Test R²"),
-                tooltip=[
-                    alt.Tooltip("target_label:N", title="예측 대상"),
-                    alt.Tooltip("model:N", title="모델"),
-                    alt.Tooltip("test_r2:Q", title="Test R²", format=".4f"),
-                    alt.Tooltip("test_mae:Q", title="MAE", format=".4f"),
-                    alt.Tooltip("test_rmse:Q", title="RMSE", format=".4f")
-                ]
-            )
-            .properties(height=360)
-        )
-
-        text = perf_chart.mark_text(
-            align="center",
-            baseline="bottom",
-            dy=-5
-        ).encode(
-            text=alt.Text("test_r2:Q", format=".2f")
-        )
-
-        st.altair_chart(perf_chart + text, use_container_width=True)
-
-else:
-    st.info("다중 예측모델 성능 파일을 찾지 못했습니다.")
-
-st.divider()
-
-# ==================================================
-# 발표용 최적 모델 요약
-# ==================================================
-
-st.subheader("🏆 발표용 최적 모델 요약")
-st.markdown(
-    '<div class="small-caption">분석 단위와 예측 대상별 최적 모델을 요약한 표입니다.</div>',
-    unsafe_allow_html=True
-)
-
-if not ppt_modeling_best.empty:
-    st.dataframe(
-        ppt_modeling_best,
-        use_container_width=True
-    )
-else:
-    st.info("발표용 모델 요약 파일을 찾지 못했습니다.")
-
-st.divider()
-
-# ==================================================
 # 모델 성능 요약
 # ==================================================
 
@@ -1930,6 +1853,83 @@ if not compression_compare.empty:
 
 else:
     st.info("압축방식 비교 파일을 찾지 못했습니다.")
+
+st.divider()
+
+# ==================================================
+# 다중 예측모델 성능 비교
+# ==================================================
+
+st.subheader("🤖 다중 예측모델 성능 비교")
+st.markdown(
+    '<div class="small-caption">연간 HIRI, 야간기온, 열대야시간 등 여러 예측 대상에 대한 모델 성능 비교 결과입니다.</div>',
+    unsafe_allow_html=True
+)
+
+if not model_performance_all.empty:
+    st.dataframe(
+        model_performance_all.round(4),
+        use_container_width=True
+    )
+
+    if "test_r2" in model_performance_all.columns:
+        performance_best = (
+            model_performance_all
+            .sort_values("test_r2", ascending=False)
+            .groupby("target_label")
+            .head(1)
+            .copy()
+        )
+
+        perf_chart = (
+            alt.Chart(performance_best)
+            .mark_bar(cornerRadiusTopLeft=6, cornerRadiusTopRight=6)
+            .encode(
+                x=alt.X("target_label:N", title="예측 대상", sort="-y"),
+                y=alt.Y("test_r2:Q", title="Test R²"),
+                tooltip=[
+                    alt.Tooltip("target_label:N", title="예측 대상"),
+                    alt.Tooltip("model:N", title="모델"),
+                    alt.Tooltip("test_r2:Q", title="Test R²", format=".4f"),
+                    alt.Tooltip("test_mae:Q", title="MAE", format=".4f"),
+                    alt.Tooltip("test_rmse:Q", title="RMSE", format=".4f")
+                ]
+            )
+            .properties(height=360)
+        )
+
+        text = perf_chart.mark_text(
+            align="center",
+            baseline="bottom",
+            dy=-5
+        ).encode(
+            text=alt.Text("test_r2:Q", format=".2f")
+        )
+
+        st.altair_chart(perf_chart + text, use_container_width=True)
+
+else:
+    st.info("다중 예측모델 성능 파일을 찾지 못했습니다.")
+
+st.divider()
+
+# ==================================================
+# 발표용 최적 모델 요약
+# ==================================================
+
+st.subheader("🏆 발표용 최적 모델 요약")
+st.markdown(
+    '<div class="small-caption">분석 단위와 예측 대상별 최적 모델을 요약한 표입니다.</div>',
+    unsafe_allow_html=True
+)
+
+if not ppt_modeling_best.empty:
+    st.dataframe(
+        ppt_modeling_best,
+        use_container_width=True
+    )
+else:
+    st.info("발표용 모델 요약 파일을 찾지 못했습니다.")
 
 st.divider()
 
