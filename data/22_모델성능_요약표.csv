@@ -1,0 +1,15 @@
+﻿압축방식,압축단위,예측대상,최적모델,행수,변수수,R2,MAE,RMSE,학습시간_초
+열섬 특성 벡터화,adm_cd × year + UHI feature vector,HIRI20_REL,HistGradientBoosting,4564,32,0.9236,2.3734,4.6374,1.12
+연도 HIRI 요약,adm_cd × year,HIRI20_REL,ExtraTrees,4564,9,0.6596,6.4063,9.7869,0.11
+열섬 특성 벡터화,adm_cd × year + UHI feature vector,night_temp_mean,Ridge,4564,31,1.0,0.0023,0.0031,0.0
+연도 HIRI 요약,adm_cd × year,night_temp_mean,ExtraTrees,4564,9,0.9913,0.0768,0.1142,0.11
+열섬 특성 벡터화,adm_cd × year + UHI feature vector,ret_cooling_amount_mean,ExtraTrees,4564,32,0.9977,0.0083,0.0227,0.17
+연도 HIRI 요약,adm_cd × year,ret_cooling_amount_mean,ExtraTrees,4564,9,0.9136,0.1082,0.1387,0.12
+열섬 특성 벡터화,adm_cd × year + UHI feature vector,ret_recovery_time_25_mean,ExtraTrees,4564,32,0.998,0.0043,0.0143,0.17
+연도 HIRI 요약,adm_cd × year,ret_recovery_time_25_mean,ExtraTrees,4564,9,0.9568,0.0431,0.0659,0.12
+연월 집계,adm_cd × year × month,temp_2m_c_mean,ExtraTrees,54748,12,0.9995,0.1378,0.2049,0.55
+연월시간 + Fourier 주기 인코딩,adm_cd × year × month × hour + sin/cos,temp_2m_c_mean,ExtraTrees,1313952,15,0.9993,0.172,0.2525,24.54
+연월시간 집계,adm_cd × year × month × hour,temp_2m_c_mean,ExtraTrees,1313952,11,0.9993,0.1723,0.253,18.54
+연도 집계,adm_cd × year,temp_2m_c_mean,ExtraTrees,4564,9,0.9873,0.1049,0.1522,0.11
+열섬 특성 벡터화,adm_cd × year + UHI feature vector,tropical_hours_total,Ridge,4564,31,0.9999,1.665,2.4381,0.01
+연도 HIRI 요약,adm_cd × year,tropical_hours_total,ExtraTrees,4564,9,0.9708,13.0816,18.0921,0.11

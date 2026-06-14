@@ -1,0 +1,7 @@
+﻿데이터셋,압축방식,압축단위,평균_R2,최고_R2,평균_MAE,평균_RMSE,평균_학습시간초,평균_행수,실험수
+uhi_feature_vector,열섬 특성 벡터화,adm_cd × year + UHI feature vector,0.966,1.0,0.9977,1.9266,0.42,4564,15
+month_summary,연월 집계,adm_cd × year × month,0.987,0.9995,0.5708,0.753,0.63,54748,3
+month_hour_fourier,연월시간 + Fourier 주기 인코딩,adm_cd × year × month × hour + sin/cos,0.9845,0.9993,0.6872,0.8886,12.44,1313952,3
+month_hour_plain,연월시간 집계,adm_cd × year × month × hour,0.7079,0.9993,2.7383,3.2312,10.23,1313952,3
+year_hiri_summary,연도 HIRI 요약,adm_cd × year,0.7967,0.9913,8.3846,10.509,0.32,4564,15
+year_temp_summary,연도 집계,adm_cd × year,0.9677,0.9873,0.1683,0.2242,0.35,4564,3

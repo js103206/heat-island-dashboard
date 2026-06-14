@@ -1,0 +1,8 @@
+﻿압축방식,분석단위,예측대상,최적모델,행수,변수수,Test R² 평균±표준편차,MAE 평균±표준편차,RMSE 평균±표준편차
+열섬 특성 벡터 → 연도 HIRI 예측,adm_cd × year,HIRI_YEAR_FROM_DAILY,HistGradientBoosting,4564,35,0.9632 ± 0.0233,1.7878 ± 0.2131,2.9674 ± 0.9932
+일별 HIRI → 연도 압축,adm_cd × year,HIRI_YEAR_FROM_DAILY,HistGradientBoosting,4564,14,0.9621 ± 0.0201,1.9097 ± 0.2007,3.0377 ± 0.8911
+월별 기상압축 → 월별 HIRI 예측,adm_cd × year × month,HIRI_MONTH_FROM_DAILY,HistGradientBoosting,54748,30,0.9508 ± 0.0221,2.4431 ± 0.2107,3.6130 ± 0.8887
+연월시간 압축 → 월별 HIRI 예측,adm_cd × year × month × hour,HIRI_MONTH_FROM_DAILY,HistGradientBoosting,1313952,20,0.9281 ± 0.0211,3.1996 ± 0.2277,4.3963 ± 0.7663
+일별 HIRI → 월별 압축,adm_cd × year × month,HIRI_MONTH_FROM_DAILY,HistGradientBoosting,54748,17,0.9186 ± 0.0178,3.3110 ± 0.2967,4.6915 ± 0.6895
+도시구조 변수만 → 연도 HIRI 예측,adm_cd × year,HIRI_YEAR_FROM_DAILY,HistGradientBoosting,4564,9,0.9084 ± 0.0189,3.4072 ± 0.3084,4.7825 ± 0.6618
+일별 HIRI 특성,adm_cd × date,HIRI_DAILY,HistGradientBoosting,1666564,44,0.7697 ± 0.0226,7.0311 ± 0.3335,9.0409 ± 0.5951
