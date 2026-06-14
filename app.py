@@ -1926,26 +1926,27 @@ st.markdown(
 if not ppt_modeling_best.empty:
     best_model_row = ppt_modeling_best.iloc[0]
 
-    col1, col2, col3, col4 = st.columns(4)
+    st.success(
+        f"최종적으로 **{best_model_row['압축방식']}** 방식과 "
+        f"**{best_model_row['최적모델']}** 모델이 가장 우수한 성능을 보여 "
+        f"주요 예측 모델로 선정되었습니다."
+    )
 
-    with col1:
-        st.metric("최종 압축방식", best_model_row["압축방식"])
+    best_summary_df = pd.DataFrame({
+        "구분": ["최종 압축방식", "분석 단위", "예측 대상", "최적 모델", "Test R²"],
+        "내용": [
+            best_model_row["압축방식"],
+            best_model_row["분석단위"],
+            best_model_row["예측대상"],
+            best_model_row["최적모델"],
+            best_model_row["Test R² 평균±표준편차"]
+        ]
+    })
 
-    with col2:
-        st.metric("예측 대상", best_model_row["예측대상"])
-
-    with col3:
-        st.metric("최적 모델", best_model_row["최적모델"])
-
-    with col4:
-        st.metric("Test R²", str(best_model_row["Test R² 평균±표준편차"]))
-
-    st.info(
-        f"""
-        최종적으로 **{best_model_row['압축방식']}** 방식과 
-        **{best_model_row['최적모델']}** 모델이 가장 우수한 성능을 보여 
-        주요 예측 모델로 선정되었습니다.
-        """
+    st.dataframe(
+        best_summary_df,
+        use_container_width=True,
+        hide_index=True
     )
 
 else:
