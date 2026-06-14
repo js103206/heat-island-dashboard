@@ -1914,6 +1914,46 @@ else:
 st.divider()
 
 # ==================================================
+# 최종 모델 선정 결과
+# ==================================================
+
+st.subheader("🏆 최종 모델 선정 결과")
+st.markdown(
+    '<div class="small-caption">여러 예측 단위와 변수 조합을 비교하여 최종 예측 모델을 선정한 결과입니다.</div>',
+    unsafe_allow_html=True
+)
+
+if not ppt_modeling_best.empty:
+    best_model_row = ppt_modeling_best.iloc[0]
+
+    col1, col2, col3, col4 = st.columns(4)
+
+    with col1:
+        st.metric("최종 압축방식", best_model_row["압축방식"])
+
+    with col2:
+        st.metric("예측 대상", best_model_row["예측대상"])
+
+    with col3:
+        st.metric("최적 모델", best_model_row["최적모델"])
+
+    with col4:
+        st.metric("Test R²", str(best_model_row["Test R² 평균±표준편차"]))
+
+    st.info(
+        f"""
+        최종적으로 **{best_model_row['압축방식']}** 방식과 
+        **{best_model_row['최적모델']}** 모델이 가장 우수한 성능을 보여 
+        주요 예측 모델로 선정되었습니다.
+        """
+    )
+
+else:
+    st.info("최종 모델 선정 결과 파일을 찾지 못했습니다.")
+
+st.divider()
+
+# ==================================================
 # 발표용 최적 모델 요약
 # ==================================================
 
